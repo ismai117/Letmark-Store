@@ -1,12 +1,13 @@
 package com.im.letmark.di
 
-import com.im.letmark.data.local.CacheMapper
-import com.im.letmark.data.network.ResponseMapper
+import com.im.letmark.data.local.util.CartCacheMapper
+import com.im.letmark.data.local.util.OrderCacheMapper
+import com.im.letmark.data.local.util.ProductCacheMapper
+import com.im.letmark.data.network.util.ResponseMapper
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import retrofit2.Response
 import javax.inject.Singleton
 
 @Module
@@ -21,8 +22,20 @@ object InteractorsModule {
 
     @Singleton
     @Provides
-    fun provideCacheMapper(): CacheMapper {
-        return CacheMapper()
+    fun provideCacheMapper(): ProductCacheMapper {
+        return ProductCacheMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCartCacheMapper(): CartCacheMapper {
+        return CartCacheMapper()
+    }
+
+    @Singleton
+    @Provides
+    fun provideOrderCacheMapper(): OrderCacheMapper{
+        return OrderCacheMapper()
     }
 
 }

@@ -1,5 +1,6 @@
-package com.im.letmark.data.network
+package com.im.letmark.data.network.util
 
+import com.im.letmark.data.network.products.ProductResponse
 import com.im.letmark.domain.model.Product
 import com.im.letmark.domain.util.EntityMapper
 

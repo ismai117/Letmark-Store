@@ -1,6 +1,6 @@
 package com.im.letmark.di
 
-import com.im.letmark.data.network.ProductService
+import com.im.letmark.data.network.service.ProductService
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -10,8 +10,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
-import kotlin.math.log
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -30,7 +30,12 @@ object RetrofitModule {
         var logger = HttpLoggingInterceptor()
         logger = logger.setLevel(HttpLoggingInterceptor.Level.BODY)
 
-        return OkHttpClient.Builder().addInterceptor(logger).build()
+        return OkHttpClient.Builder().
+        addInterceptor(logger)
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
+            .build()
 
     }
 

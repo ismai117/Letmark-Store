@@ -2,8 +2,10 @@ package com.im.letmark.di
 
 import android.content.Context
 import androidx.room.Room
-import com.im.letmark.data.local.ProductDao
-import com.im.letmark.data.local.ProductsDatabase
+import com.im.letmark.data.local.cart.CartDao
+import com.im.letmark.data.local.products.ProductDao
+import com.im.letmark.data.local.db.ProductsDatabase
+import com.im.letmark.data.local.order.OrderDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +23,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             context.applicationContext,
             ProductsDatabase::class.java,
-            ProductsDatabase.TABLE_NAME
+            ProductsDatabase.Table_Name
         ).fallbackToDestructiveMigration().build()
     }
 
@@ -31,5 +33,16 @@ object DatabaseModule {
         return productsDatabase.getProductDao()
     }
 
+    @Singleton
+    @Provides
+    fun provideCartDao(productsDatabase: ProductsDatabase): CartDao {
+        return productsDatabase.getCartDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideOrderDao(productsDatabase: ProductsDatabase): OrderDao {
+        return productsDatabase.getOrderDao()
+    }
 
 }

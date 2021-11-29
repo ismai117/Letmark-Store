@@ -1,4 +1,4 @@
-package com.im.letmark.data.local
+package com.im.letmark.data.local.products
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

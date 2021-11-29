@@ -4,9 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/cart_item_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/checkout_cart_item_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_address.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_checkout.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_items.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_payment.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_payment_success_.xml" value="0.33" />
         <entry key="app/src/main/res/layout/product_item_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/cart_menu.xml" value="0.22" />
+        <entry key="app/src/main/res/menu/cart_toolbar_menu.xml" value="0.25" />
       </map>
     </option>
   </component>

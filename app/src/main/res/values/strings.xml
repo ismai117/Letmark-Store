@@ -2,4 +2,50 @@
     <string name="app_name">Letmark</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="sort_array">
+        <item>Sort</item>
+        <item>Name (A to Z)</item>
+        <item>Name (Z TO A)</item>
+        <item>Price (Low to High)</item>
+        <item>Price (High to Low)</item>
+    </string-array>
+
+
+    <string-array name="category_array">
+        <item>Category</item>
+        <item>men\'s clothing</item>
+        <item>women\'s clothing</item>
+        <item>jewelery</item>
+        <item>electronics</item>
+    </string-array>
+
+
+    <string-array name="mens_clothing_quantity_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="womens_clothing_quantity_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="electronics_quantity_array">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string-array name="jewelery_quantity_array">
+        <item>1</item>
+    </string-array>
+
+
 </resources>

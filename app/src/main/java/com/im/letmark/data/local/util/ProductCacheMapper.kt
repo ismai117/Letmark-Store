@@ -1,12 +1,12 @@
-package com.im.letmark.data.local
+package com.im.letmark.data.local.util
 
-import com.im.letmark.data.network.ProductResponse
+import com.im.letmark.data.local.products.ProductEntity
 import com.im.letmark.domain.model.Product
 import com.im.letmark.domain.util.EntityMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class CacheMapper : EntityMapper<ProductEntity, Product> {
+class ProductCacheMapper : EntityMapper<ProductEntity, Product> {
 
     override fun mapFromEntity(entity: ProductEntity): Product {
         return Product(
@@ -37,6 +37,7 @@ class CacheMapper : EntityMapper<ProductEntity, Product> {
     }
 
 
+
     fun mapFromEntityList(entity: List<ProductEntity>): List<Product> {
         return entity.map { mapFromEntity(it) }
     }
@@ -48,6 +49,16 @@ class CacheMapper : EntityMapper<ProductEntity, Product> {
     fun mapfromEntityFlow(entity: Flow<List<ProductEntity>>): Flow<List<Product>> {
         return entity.map { mapFromEntityList(it) }
     }
+
+
+
+
+
+
+
+
+
+
 
 
 }

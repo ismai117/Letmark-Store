@@ -1,8 +1,7 @@
-package com.im.letmark.data.network
+package com.im.letmark.data.network.products
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import java.io.Serializable
 
 @JsonClass(generateAdapter = true)
 class ProductResponse(
@@ -30,7 +29,7 @@ class ProductResponse(
 
 
 
-){
+    ){
 
     @JsonClass(generateAdapter = true)
 
