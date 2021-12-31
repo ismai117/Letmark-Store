@@ -27,6 +27,7 @@ class CartFragment : Fragment(), CartItemInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         cartAdapter = CartAdapter(this)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -68,13 +69,29 @@ class CartFragment : Fragment(), CartItemInterface {
 
         }
 
+        return view
+    }
 
-        binding.deleteCart.setOnClickListener {
-            cartModel.delete()
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        inflater.inflate(R.menu.cart_toolbar_menu, menu)
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId){
+
+            R.id.delete_cartItems -> {
+
+                cartModel.delete()
+
+            }
+
         }
 
-
-        return view
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initRecycler() {

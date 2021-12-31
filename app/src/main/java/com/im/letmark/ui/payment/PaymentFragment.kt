@@ -21,6 +21,9 @@ import com.im.letmark.R
 import com.im.letmark.databinding.FragmentPaymentBinding
 import com.im.letmark.domain.model.Order
 import com.im.letmark.domain.model.Product
+import com.im.letmark.util.Constants.CHANNEL_ID
+import com.im.letmark.util.Constants.CHANNEL_NAME
+import com.im.letmark.util.Constants.NOTIFICATION_ID
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -31,10 +34,6 @@ class PaymentFragment : Fragment() {
     private val binding get() = paymentBinding!!
     private val paymentModel: PaymentViewModel by viewModels()
     private var checked = false
-
-    private val CHANNEL_ID = "201"
-    private val CHANNEL_NAME = "LETMARK_NAME"
-    private val NOTIFICATION_ID = 1
 
     private var firstnameValue: String? = null
     private var lastnameValue: String? = null
@@ -55,11 +54,11 @@ class PaymentFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        createNotificationChannel()
         customerDetails =
             requireActivity().getSharedPreferences("shipping_address", Context.MODE_PRIVATE)
         customerOrders =
             requireActivity().getSharedPreferences("customer_orders", Context.MODE_PRIVATE)
-        setUpNotification()
 
         customerDetails?.let {
 
@@ -144,16 +143,15 @@ class PaymentFragment : Fragment() {
 
     private fun successAction() {
 
-        val notification =
-            NotificationCompat.Builder(requireContext(), CHANNEL_ID).apply {
 
-                setContentTitle("Letmark Order Successfully Placed")
+        val notification = NotificationCompat.Builder(requireContext(), CHANNEL_ID)
+            .setContentTitle("Letmark")
+            .setContentText("Letmark order placed successfully")
+            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setAutoCancel(false)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .build()
 
-                setSmallIcon(R.drawable.success)
-
-                setAutoCancel(true)
-
-            }.build()
 
         val notificationManager = NotificationManagerCompat.from(requireContext())
 
@@ -162,6 +160,27 @@ class PaymentFragment : Fragment() {
         paymentModel.deleteAll()
 
         findNavController().navigate(R.id.action_paymentFragment_to_paymentSuccess_Fragment)
+
+    }
+
+    private fun createNotificationChannel() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+
+            val channel = NotificationChannel(
+                CHANNEL_ID,
+                CHANNEL_NAME,
+                NotificationManager.IMPORTANCE_DEFAULT
+            ).apply {
+                lightColor = Color.GREEN
+                enableLights(true)
+            }
+
+            val notificationManager = requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
+            notificationManager.createNotificationChannel(channel)
+
+        }
 
     }
 
@@ -186,31 +205,6 @@ class PaymentFragment : Fragment() {
 
     }
 
-
-    private fun setUpNotification() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            val channel = NotificationChannel(
-                CHANNEL_ID,
-                CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_DEFAULT
-            ).apply {
-
-                lightColor = Color.GREEN
-                enableLights(true)
-
-            }
-
-            val notificationManager =
-                requireActivity().getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            notificationManager.createNotificationChannel(channel)
-
-
-        }
-
-    }
 
     override fun onDestroy() {
         super.onDestroy()

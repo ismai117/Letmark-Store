@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <item
-        android:id="@+id/delete_cartItem"
+        android:id="@+id/delete_cartItems"
         android:icon="@drawable/bin"
         android:title=""
         app:showAsAction="ifRoom"

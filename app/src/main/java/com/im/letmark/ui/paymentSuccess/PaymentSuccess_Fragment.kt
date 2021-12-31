@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.im.letmark.R
 import com.im.letmark.databinding.FragmentPaymentSuccessBinding
@@ -29,6 +30,7 @@ class PaymentSuccess_Fragment : Fragment() {
             }
         })
 
+
     }
 
     override fun onCreateView(
@@ -38,17 +40,29 @@ class PaymentSuccess_Fragment : Fragment() {
         paymentSuccessbinding = FragmentPaymentSuccessBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        requireActivity().actionBar?.setDisplayHomeAsUpEnabled(false)
+
 
         binding.backToHome.setOnClickListener {
             findNavController().navigate(R.id.action_paymentSuccess_Fragment_to_itemsFragment)
         }
 
 
-
-
-
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.hide()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        (activity as AppCompatActivity?)!!.supportActionBar!!.show()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        paymentSuccessbinding = null
     }
 
 

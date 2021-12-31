@@ -91,7 +91,7 @@
     <fragment
         android:id="@+id/paymentSuccess_Fragment"
         android:name="com.im.letmark.ui.paymentSuccess.PaymentSuccess_Fragment"
-        android:label="fragment_payment_success_"
+        android:label=""
         tools:layout="@layout/fragment_payment_success_" >
         <action
             android:id="@+id/action_paymentSuccess_Fragment_to_itemsFragment"
