@@ -103,6 +103,10 @@ constructor(
     suspend fun updateCartItem(cartEntity: CartEntity){
         cartDao.update(cartEntity)
     }
+
+    suspend fun deleteCartItem(cartEntity: CartEntity) {
+        cartDao.delete(cartEntity)
+    }
     
     suspend fun saveCustomerOrder(order: Order){
 

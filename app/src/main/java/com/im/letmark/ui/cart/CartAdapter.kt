@@ -14,7 +14,8 @@ import com.im.letmark.domain.model.Cart
 import com.im.letmark.util.getItemNameSelected
 import kotlinx.android.synthetic.main.cart_item_layout.view.*
 
-class CartAdapter(private val cartItemInterface: CartItemInterface) : RecyclerView.Adapter<CartAdapter.CartItemViewHolder>() {
+class CartAdapter(private val cartItemInterface: CartItemInterface) :
+    RecyclerView.Adapter<CartAdapter.CartItemViewHolder>() {
 
     private lateinit var items: List<Cart>
 
@@ -42,7 +43,13 @@ class CartAdapter(private val cartItemInterface: CartItemInterface) : RecyclerVi
         fun bind(cart: Cart, cartItemInterface: CartItemInterface) {
 
 
+            val increase = itemView.increaseQty_btn
+            val decrease = itemView.decreaseQty_btn
+            var qty = itemView.itemQty_Value
+            var qtyValue = 0
             val position = adapterPosition
+            val update = itemView.update_cart
+            val delete = itemView.delete_item
 
             itemView.cart_itemName.text = cart.title
             itemView.cart_itemPrice.text = "£${cart.price * cart.quantity}"
@@ -50,66 +57,36 @@ class CartAdapter(private val cartItemInterface: CartItemInterface) : RecyclerVi
             Glide.with(itemView.context).load(cart.image).into(itemView.cart_itemImage)
 
 
+            qty.text = cart.quantity.toString()
 
-            when (cart.category) {
+
+            increase.setOnClickListener {
+
+                if (position == adapterPosition) {
 
 
-                "men's clothing" -> {
+                    qtyValue = qty.text.toString().toInt()
+                    qtyValue++
+                    qty.text = qtyValue.toString()
 
-                    ArrayAdapter.createFromResource(
-                        itemView.context,
-                        R.array.mens_clothing_quantity_array,
-                        android.R.layout.simple_spinner_dropdown_item
-                    ).also { adapter ->
-
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
-                        itemView.quantity_spinner.adapter = adapter
-
-                    }
 
                 }
 
-                "women's clothing" -> {
 
-                    ArrayAdapter.createFromResource(
-                        itemView.context,
-                        R.array.womens_clothing_quantity_array,
-                        android.R.layout.simple_spinner_dropdown_item
-                    ).also { adapter ->
+            }
 
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
-                        itemView.quantity_spinner.adapter = adapter
 
-                    }
+            decrease.setOnClickListener {
 
-                }
+                if (position == adapterPosition) {
 
-                "jewelery" -> {
+                    qtyValue = qty.text.toString().toInt()
 
-                    ArrayAdapter.createFromResource(
-                        itemView.context,
-                        R.array.jewelery_quantity_array,
-                        android.R.layout.simple_spinner_dropdown_item
-                    ).also { adapter ->
-
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
-                        itemView.quantity_spinner.adapter = adapter
-
-                    }
-
-                }
-
-                "electronics" -> {
-
-                    ArrayAdapter.createFromResource(
-                        itemView.context,
-                        R.array.electronics_quantity_array,
-                        android.R.layout.simple_spinner_dropdown_item
-                    ).also { adapter ->
-
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
-                        itemView.quantity_spinner.adapter = adapter
-
+                    if (qtyValue == 1) {
+                        qty.text = "1"
+                    } else {
+                        qtyValue -= 1
+                        qty.text = qtyValue.toString()
                     }
 
                 }
@@ -118,44 +95,45 @@ class CartAdapter(private val cartItemInterface: CartItemInterface) : RecyclerVi
             }
 
 
+            update.setOnClickListener {
 
-            val spinner = itemView.quantity_spinner
+                if (position == adapterPosition) {
 
-            var qtyUpdated: Int? = null
+                    val item = CartEntity(
+                        id = cart.id,
+                        title = cart.title,
+                        image = cart.image,
+                        category = cart.category,
+                        price = cart.price,
+                        quantity = qtyValue
+                    )
 
-            spinner.getItemNameSelected{
-
-                qtyUpdated = it.toInt()
-
-            }
-
-
-            itemView.cart_updateQty.setOnClickListener {
-
-                if(position == adapterPosition){
-
-
-
-                    qtyUpdated?.let {
-
-                        val item = CartEntity(
-
-                            id = cart.id,
-                            title = cart.title,
-                            image = cart.image,
-                            category = cart.category,
-                            price = cart.price,
-                            quantity = qtyUpdated!!,
-
-                            )
-
-                        cartItemInterface.updateItem(item)
-
-                    } ?: 0
+                    cartItemInterface.updateItem(item)
 
                 }
 
             }
+
+
+            delete.setOnClickListener {
+
+                if (position == adapterPosition) {
+
+                    val item = CartEntity(
+                        id = cart.id,
+                        title = cart.title,
+                        image = cart.image,
+                        category = cart.category,
+                        price = cart.price,
+                        quantity = cart.quantity
+                    )
+
+                    cartItemInterface.deleteItem(item)
+
+                }
+
+            }
+
 
         }
 

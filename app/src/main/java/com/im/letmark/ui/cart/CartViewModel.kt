@@ -25,7 +25,11 @@ constructor(
         repository.updateCartItem(cartEntity)
     }
 
-    fun delete() = viewModelScope.launch(Dispatchers.IO) {
+    fun delete(cartEntity: CartEntity) = runBlocking {
+        repository.deleteCartItem(cartEntity)
+    }
+
+    fun deleteAll() = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteAllCart()
     }
 

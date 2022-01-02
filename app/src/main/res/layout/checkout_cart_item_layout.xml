@@ -15,22 +15,22 @@
 
         <ImageView
             android:id="@+id/checkoutcart_itemImage"
-            android:layout_width="100dp"
-            android:layout_height="120dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/checkoutcart_itemName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="16dp"
             android:lineSpacingExtra="2sp"
             android:maxWidth="240dp"
+            android:text="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/checkoutcart_itemImage"
@@ -41,7 +41,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="4dp"
+            android:text="£29.99"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textSize="18sp"

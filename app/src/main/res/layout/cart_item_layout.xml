@@ -1,71 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="8dp"
-    android:layout_margin="10dp">
+    app:cardUseCompatPadding="true"
+    app:cardElevation="8dp">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="140dp"
-    android:layout_margin="15dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:paddingBottom="12dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/delete_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/delete_item"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/cart_itemImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_launcher_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/cart_itemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:lineSpacingExtra="2sp"
+            android:maxWidth="220dp"
+            android:text="Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/cart_itemImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="16dp"
+            android:id="@+id/qty_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toEndOf="@+id/cart_itemImage"
+            app:layout_constraintTop_toBottomOf="@+id/cart_itemName">
 
 
-    <ImageView
-        android:id="@+id/cart_itemImage"
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <Button
+                android:id="@+id/decreaseQty_btn"
+                android:layout_width="40dp"
+                android:layout_height="50dp"
+                android:text="-"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
 
-    <TextView
-        android:lineSpacingExtra="2sp"
-        android:textColor="@color/black"
-        android:id="@+id/cart_itemName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:maxWidth="240dp"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/cart_itemImage"
-        app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/itemQty_Value"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:text="0"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
 
-    <Spinner
-        android:id="@+id/quantity_spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cart_itemImage" />
+            <Button
+                android:id="@+id/increaseQty_btn"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:text="+"
+                android:textColor="@color/black"
+                android:textSize="22sp" />
 
-    <Button
-        android:id="@+id/cart_updateQty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Update"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/cart_itemPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="£35.00"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cart_itemImage"
-        app:layout_constraintTop_toBottomOf="@+id/quantity_spinner"
-        app:layout_constraintVertical_bias="0.2" />
+        </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/cart_itemPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="£29.99"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cart_itemImage"
+            app:layout_constraintTop_toBottomOf="@+id/qty_layout" />
+
+        <TextView
+            android:textColor="@color/black"
+            android:id="@+id/update_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

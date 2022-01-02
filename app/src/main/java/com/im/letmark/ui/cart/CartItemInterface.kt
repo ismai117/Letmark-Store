@@ -6,4 +6,6 @@ interface CartItemInterface {
 
     fun updateItem(cartEntity: CartEntity)
 
+    fun deleteItem(cartEntity: CartEntity)
+
 }

@@ -81,11 +81,11 @@ class CartFragment : Fragment(), CartItemInterface {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        when(item.itemId){
+        when (item.itemId) {
 
             R.id.delete_cartItems -> {
 
-                cartModel.delete()
+                cartModel.deleteAll()
 
             }
 
@@ -110,6 +110,13 @@ class CartFragment : Fragment(), CartItemInterface {
         cartModel.update(cartEntity)
 
         Toast.makeText(requireContext(), "updated", Toast.LENGTH_LONG).show()
+    }
+
+    override fun deleteItem(cartEntity: CartEntity) {
+
+        cartModel.delete(cartEntity)
+
+        Toast.makeText(requireContext(), "deleted", Toast.LENGTH_LONG).show()
     }
 
 
